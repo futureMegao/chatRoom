@@ -2,7 +2,7 @@ import React, { Component,PropTypes } from 'react';
 import logo from './logo.svg';
 import './loginbox.scss';
 
-// import ChatRoom from '../components/ChatRoom';
+import ChatRoom from './components/ChatRoom';
 class App extends Component {
     constructor(props){
         super(props);
@@ -50,7 +50,7 @@ class App extends Component {
       render() {
           let renderDOM;
           if (this.state.uid) {
-              // renderDOM = <ChatRoom uid={this.state.uid} username={this.state.username} socket={this.state.socket}/>
+              renderDOM = <ChatRoom uid={this.state.uid} username={this.state.username} socket={this.state.socket}/>
           } else {
               renderDOM = (<div className="login-box" style={{padding:200}}>
                   <h2>登 陆</h2>
