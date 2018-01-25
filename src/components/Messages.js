@@ -10,8 +10,8 @@ export default class Messages extends Component {
         const myId = this.props.myId;
         const oneMessage = this.props.messages.map(function(message){
             return(
-                <Message key={message.msgId} msgType={message.type} msgUser={message.username} action={message.action} isMe={(myId == message.uid)? true : false} time={message.time}/>
-            )
+                    <Message key={message.msgId} msgType={message.type} msgUser={message.username} action={message.action} isMe={(myId == message.uid)? true : false} time={message.time}/>
+                )
         })
         return(<div className="messages" ref="messages">{oneMessage}</div>)
     }
@@ -28,8 +28,8 @@ class Message extends Component {
         } else {
             return (
                 <div className={(this.props.isMe)? 'me one-message':'other one-message'}>
-                    <p className="time"><span>{this.props.msgUser}</span> {this.props.time}</p>
-                    <div className="message-content">{this.props.action}</div>
+                        <p className="time"><span>{this.props.msgUser}</span> {this.props.time}</p>
+                        <div className="message-content">{this.props.action}</div>
                 </div>
             )
         }

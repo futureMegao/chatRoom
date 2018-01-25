@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 
 export default class RoomStatus extends Component {

@@ -47,13 +47,13 @@ export default class ChatInput extends Component {
         return(
             <div className="input-box">
                 <div className="input">
-                    <input type="text" maxLength="140" placeholder="按回车提交" value={this.state.message}
-                           onKeyPress={this.handleKeyPress.bind(this)} onChange={this.handleChange.bind(this)}/>
+                    <input type="text" maxLength="140" placeholder="按回车提交" value={this.state.message} 
+                    onKeyPress={this.handleKeyPress.bind(this)} onChange={this.handleChange.bind(this)}/>
                 </div>
                 <div className="button">
                     <button type="button" onClick={this.handleClick.bind(this)}>提交</button>
                 </div>
             </div>
-        )
+            )
     }
 }

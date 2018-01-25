@@ -1,24 +1,38 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import RoomStatus from './RoomStatus';
-
-
+import Messages from './Messages';
+import ChatInput from './ChatInput';
 
 export default class ChatRoom extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        // const socket = this.props.socket;
+        const socket = this.props.socket;
         this.state = {
             myId: this.props.uid,
             myName: this.props.username,
             uid: this.props.uid,
             username: this.props.username,
-            // socket: socket,
+            socket: socket,
             messages:[],
             onlineUsers: {},
             onlineCount: 0,
             userhtml:'',
         }
         this.ready();
+    }
+
+    // 处理在线人数及用户名
+    handleUsers() {
+        const users = this.state.onlineUsers;
+        let userhtml = '';
+        let separator = '';
+        for (let key in users) {
+            if (users.hasOwnProperty(key)) {
+                userhtml+= separator + users[key];
+                separator = '、';
+            }
+        }
+        this.setState({userhtml: userhtml})
     }
 
     // 生成消息id
@@ -57,7 +71,7 @@ export default class ChatRoom extends Component {
     }
 
     handleLogout() {
-        // location.reload();
+        location.reload();
     }
     // 开始监控socket
     ready() {
@@ -74,20 +88,19 @@ export default class ChatRoom extends Component {
     }
 
     render() {
-        return (
-            <div>
+        return(
+            <div className="chat-room">
                 <div className="welcome">
                     <div className="room-name">鱼头的聊天室 | {this.state.myName}</div>
                     <div className="button">
                         <button onClick={this.handleLogout}>登出</button>
                     </div>
                 </div>
-                {/*<RoomStatus onlineCount={this.state.onlineCount} userhtml={this.state.userhtml}/>*/}
-                {/*<div ref="chatArea">*/}
-                    {/*<Messages messages={this.state.messages} myId={this.state.myId} />*/}
-                    {/*<ChatInput myId={this.state.myId} myName={this.state.myName} socket={this.state.socket}/>*/}
-                {/*</div>*/}
-            </div>
-        )
+                <RoomStatus onlineCount={this.state.onlineCount} userhtml={this.state.userhtml}/>
+                <div ref="chatArea">
+                    <Messages messages={this.state.messages} myId={this.state.myId} />
+                    <ChatInput myId={this.state.myId} myName={this.state.myName} socket={this.state.socket}/>
+                </div>
+            </div>)
     }
 }
